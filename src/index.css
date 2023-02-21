@@ -519,6 +519,7 @@ main {
     }
     .header__contact {
         margin-left: 30px;
+        display: none;
     }
     .footer__contact {
         text-align: center;
