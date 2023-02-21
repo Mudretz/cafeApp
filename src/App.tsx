@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from "react";
+import HomePage from "./components/homePage";
+import HotDish from "./components/hotDish";
+import { Redirect, Route } from "react-router-dom";
+import Header from "./components/header";
+import Soups from "./components/soups";
+import Salats from "./components/salats";
+import Footer from "./components/footer";
+import BuryatCuisineList from "./components/common/page/buryatCuisineList";
+import { CSSTransition } from 'react-transition-group';
+import ScrollToTop from "./components/common/scrollToTop";
+import DrinksList from "./components/common/page/drinksList";
 
-function App() {
+const App: FC = () => {
+  const routes = [
+    {path: "/hot_dishes", Component: HotDish},
+    {path: "/soups", Component: Soups},
+    {path: "/buryat_cuisine", Component: BuryatCuisineList},
+    {path: "/salats", Component: Salats},
+    {path: "/drinks", Component: DrinksList},
+    {path: "/", Component: HomePage},
+  ];
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ScrollToTop />
+      <Header/>
+      {routes.map(({ path, Component }) =>
+        <Route key={path} exact path={path}>
+          {({ match }) =>
+              <CSSTransition timeout={{ enter: 1000, exit: 1}} classNames="page" unmountOnExit in={match != null}>
+                <Component/>
+              </CSSTransition>
+          }
+        </Route> 
+      )}
+      <Redirect to="/"/>
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
