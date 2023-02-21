@@ -502,7 +502,7 @@ main {
     }
     .container {
         width: 90%;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
     .header__item {
         width: 90%;
