@@ -58,7 +58,7 @@ const Button: FC<Props> = ({ id, img, name, price, weight }) => {
 
     return (
         <>
-            <div className="button" onClick={() => handleClick(id, price, { vertical: 'top', horizontal: 'center' })}>
+            <div className="button" onClick={() => handleClick(id, price, { vertical: 'bottom', horizontal: 'center' })}>
                 <p>В корзину</p>
             </div>
             <Snackbar open={open} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical, horizontal }}>

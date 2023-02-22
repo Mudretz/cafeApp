@@ -1,6 +1,6 @@
 import * as React from "react";
 import Popover from "@mui/material/Popover";
-import { Badge, Divider, IconButton, Tooltip } from "@mui/material";
+import { Badge, Divider, IconButton, Tooltip, Alert } from "@mui/material";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppDispatch, useAppSelector } from "../hook";
@@ -10,9 +10,20 @@ import { basketUpdate, deleteItemsBasket } from "../../store/basket";
 import { AddCountBasket, decrementCountBasket } from "../../store/countBasket";
 import ButtonSubmit from "./buttonSubmit";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+
+export interface State extends SnackbarOrigin {
+    openAlert: boolean;
+}
 
 export default function BasicPopover() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [state, setState] = React.useState<State>({
+    openAlert: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+  const { vertical, horizontal, openAlert } = state;
   const basket = useAppSelector(state => state.basket.entities);
   const countBasket = useAppSelector(state => state.countBasket.entities);
   const dispatch = useAppDispatch();
@@ -20,6 +31,14 @@ export default function BasicPopover() {
     if(basket.length > 0) {
         setAnchorEl(event.currentTarget);
     }
+  };
+  const handleClickAlert = (newState: SnackbarOrigin) => {
+    if(basket.length < 1) {
+        setState({ openAlert: true, ...newState });
+    }
+  }
+  const handleCloseAlert = () => {
+    setState({ ...state, openAlert: false });
   };
 
   const handleClickAddBasket = (id: string, price: number) => {
@@ -70,9 +89,14 @@ export default function BasicPopover() {
     <div>
         <IconButton aria-label="cart" aria-describedby={id} onClick={handleClick}>
             <Badge badgeContent={countBasket} color="primary" max={100000000}>
-                <ShoppingCart sx={{ color: "#fa4c43" }} style={{ fontSize: 30 }}/>
+                <ShoppingCart sx={{ color: "#fa4c43" }} style={{ fontSize: 30 }} onClick={() => handleClickAlert({ vertical: 'top', horizontal: 'center' })}/>
             </Badge>
         </IconButton>
+        <Snackbar open={openAlert} autoHideDuration={2000} onClose={handleCloseAlert} anchorOrigin={{ vertical, horizontal }}>
+            <Alert severity="warning" onClose={handleClose} sx={{ width: '100%' } }>
+                Корзина пуста, выберите товары
+            </Alert>
+        </Snackbar>
         <Popover
             id={id}
             open={open}
@@ -99,7 +123,7 @@ export default function BasicPopover() {
                                 <div className="basket__description">
                                     <div className="basket__description__item">
                                         <div className="basket__name">{item.name}</div>
-                                        <div>{item.weight}</div>
+                                        <div className="basket__weight">{item.weight}</div>
                                     </div>
                                     <div className="basket__description__item">
                                         <div className="basket__count">

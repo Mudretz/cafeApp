@@ -20,7 +20,7 @@ const App: FC = () => {
     {path: "/drinks", Component: DrinksList},
     {path: "/", Component: HomePage},
   ];
-  
+
   return (
     <>
       <ScrollToTop />
