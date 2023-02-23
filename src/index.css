@@ -175,19 +175,18 @@ body {
 
 /*Оформление основной части*/
 main {
-    padding-bottom: 50px;
-    height: 100%;
+    min-height: 550px;
+    padding-top: 50px;
 }
 
 .container {
     display: grid;
     width: 75%;
     margin: 0 auto;
-    margin-top: 50px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 50px;
     grid-row-gap: 50px;
-    min-height: 495px;
+    min-height: 600px;
 }
 
 .slider {
@@ -438,6 +437,50 @@ main {
     font-size: 21px;
 }
 
+/* Оформление страницы оформления заказа*/
+
+.order__page {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 80vh;
+}
+.order__item {
+    margin-top: 20px;
+    width: 50%;
+}
+.order__footer__basket {
+    align-items: end;
+}
+.back__button {
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    margin-left: 40px;
+}
+.back__button p:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.address__page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 19px;
+}
+
+.address__page h2 {
+    margin-bottom: 10px;
+}
+
+.card__confirmation {
+    display: grid;
+    justify-items: center;
+    grid-gap: 10px;
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 10px;
+}
 /*Анимации transition-group*/
 
 .page {
@@ -548,7 +591,7 @@ main {
     }
     .basket__modal__window {
         width: 100%;
-        height: 450px;
+        max-height: 450px;
         padding: 5px 5px 0 5px;
     }
     .basket__img img {
@@ -577,5 +620,18 @@ main {
     .basket__weight {
         font-size: 14px;
         text-align: end;
+    }
+    .order__item {
+        overflow-y: auto;
+        max-height: 600px;
+    }
+    .order__page {
+        height: 90vh;
+    }
+    main {
+        padding-top: 20px;
+    }
+    .back__button {
+        margin-bottom: 30px;
     }
 }

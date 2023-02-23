@@ -27,11 +27,14 @@ const hotBasketSlice = createSlice({
         deleteItemsBasket: (state, action) => {
             state.entities = state.entities.filter(item => item.id !== action.payload);
         },
+        allDeleteItemsBasket: (state) => {
+            state.entities = [];
+        },
     }
 });
 
 const { reducer: basketReducer, actions } = hotBasketSlice;
-export const { basketReceved, addItemsBasket, basketUpdate, deleteItemsBasket } = actions;
+export const { basketReceved, addItemsBasket, basketUpdate, deleteItemsBasket, allDeleteItemsBasket } = actions;
 
 export default basketReducer;
 

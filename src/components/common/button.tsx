@@ -58,11 +58,11 @@ const Button: FC<Props> = ({ id, img, name, price, weight }) => {
 
     return (
         <>
-            <div className="button" onClick={() => handleClick(id, price, { vertical: 'bottom', horizontal: 'center' })}>
+            <div className="button" onClick={() => handleClick(id, price, { vertical: 'top', horizontal: "left" })}>
                 <p>В корзину</p>
             </div>
             <Snackbar open={open} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical, horizontal }}>
-                <Alert icon={<CheckIcon fontSize="inherit" />} onClose={handleClose} severity="success" sx={{ width: '100%' } }>
+                <Alert icon={<CheckIcon fontSize="inherit" />} onClose={handleClose} severity="success" sx={{ width: '100%' }}>
                     {`${name} успешно добавлен в корзину`}
                 </Alert>
             </Snackbar>

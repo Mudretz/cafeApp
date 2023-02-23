@@ -30,7 +30,9 @@ const Header: FC = () => {
                     <div className="nav__item">
                         <NavLink to="/drinks" activeClassName="active">Напитки</NavLink>
                     </div>
-                    <div className="nav__item">Разное</div>
+                    <div className="nav__item">
+                        <NavLink to="/other" activeClassName="active">Хлеб/десерты</NavLink>
+                    </div>
                     <div className="nav__item badge">
                         <BasicPopover />
                     </div>

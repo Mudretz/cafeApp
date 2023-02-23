@@ -1,24 +1,24 @@
 import { FC, useEffect } from "react";
-import salatsApi from "../../../api/api.salats";
-import { salatsReceved } from "../../../store/salats";
+import otherApi from "../../../api/api.other";
+import { otherReceved } from "../../../store/other";
 import { isOutdated } from "../../../utils/isOutdated";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import CardDish from "../cardDish";
 
-const SalatsList: FC = () => {
-    const salatsList = useAppSelector(state => state.salats.entities);
-    const lastFetch = useAppSelector(state => state.salats.lastFetch);
+const OtherList: FC = () => {
+    const otherList = useAppSelector(state => state.other.entities);
+    const lastFetch = useAppSelector(state => state.other.lastFetch);
     const dispatch = useAppDispatch();
     useEffect(() => {
         if (isOutdated(lastFetch))
         {
-            dispatch(salatsReceved(salatsApi));
+            dispatch(otherReceved(otherApi));
         }
     })
     return (
         <main>
             <div className="container">
-                {salatsList.map((item) => (
+                {otherList.map((item) => (
                     <CardDish
                         id={item.id}
                         img={item.img}
@@ -34,4 +34,4 @@ const SalatsList: FC = () => {
     );
 }
  
-export default SalatsList;
+export default OtherList;

@@ -17,12 +17,15 @@ const countBasketSlice = createSlice({
         },
         decrementCountBasket: (state, action) => {
             state.entities -= action.payload;
+        },
+        clearCountBaske: (state) => {
+            state.entities = 0;
         }
     }
 });
 
 const { reducer: countBasketReducer, actions } = countBasketSlice;
-export const { AddCountBasket, decrementCountBasket } = actions;
+export const { AddCountBasket, decrementCountBasket, clearCountBaske } = actions;
 
 export default countBasketReducer;
 

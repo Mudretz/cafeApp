@@ -17,7 +17,7 @@ const HotDishesList: FC = () => {
     })
     
     return (
-        <>
+        <main>
             <div className="container">
                 {hotDishesList.map((item) => (
                     <CardDish
@@ -31,7 +31,7 @@ const HotDishesList: FC = () => {
                     />
                 ))}
             </div>
-        </>
+        </main>
     );
 }
  

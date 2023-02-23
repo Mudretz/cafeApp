@@ -11,6 +11,7 @@ import { AddCountBasket, decrementCountBasket } from "../../store/countBasket";
 import ButtonSubmit from "./buttonSubmit";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import { useLocation } from "react-router-dom";
 
 export interface State extends SnackbarOrigin {
     openAlert: boolean;
@@ -23,7 +24,9 @@ export default function BasicPopover() {
     vertical: 'top',
     horizontal: 'center',
   });
+  const location = useLocation();
   const { vertical, horizontal, openAlert } = state;
+  console.log(openAlert);
   const basket = useAppSelector(state => state.basket.entities);
   const countBasket = useAppSelector(state => state.countBasket.entities);
   const dispatch = useAppDispatch();
@@ -36,11 +39,10 @@ export default function BasicPopover() {
     if(basket.length < 1) {
         setState({ openAlert: true, ...newState });
     }
-  }
+  };
   const handleCloseAlert = () => {
     setState({ ...state, openAlert: false });
   };
-
   const handleClickAddBasket = (id: string, price: number) => {
     const findBasket = basket.find((element) => {
         return element.id === id
@@ -87,13 +89,16 @@ export default function BasicPopover() {
 
   return (
     <div>
-        <IconButton aria-label="cart" aria-describedby={id} onClick={handleClick}>
-            <Badge badgeContent={countBasket} color="primary" max={100000000}>
-                <ShoppingCart sx={{ color: "#fa4c43" }} style={{ fontSize: 30 }} onClick={() => handleClickAlert({ vertical: 'top', horizontal: 'center' })}/>
-            </Badge>
-        </IconButton>
-        <Snackbar open={openAlert} autoHideDuration={2000} onClose={handleCloseAlert} anchorOrigin={{ vertical, horizontal }}>
-            <Alert severity="warning" onClose={handleClose} sx={{ width: '100%' } }>
+        { location.pathname !== "/order_page" && location.pathname !== "/order_address" ? (
+            <IconButton aria-label="cart" aria-describedby={id} onClick={handleClick}>
+                <Badge badgeContent={countBasket} color="primary" max={100000000}>
+                    <ShoppingCart sx={{ color: "#fa4c43" }} style={{ fontSize: 30 }} onClick={() => handleClickAlert({ vertical: 'top', horizontal: 'center' })}/>
+                </Badge>
+            </IconButton>
+        ) : (null)
+        }
+        <Snackbar open={openAlert} autoHideDuration={3000} onClose={handleCloseAlert} anchorOrigin={{ vertical, horizontal }}>
+            <Alert severity="warning" onClose={handleCloseAlert} sx={{ width: '100%' } }>
                 Корзина пуста, выберите товары
             </Alert>
         </Snackbar>
@@ -152,7 +157,9 @@ export default function BasicPopover() {
                     <div className="footer__price__basket">
                         Итого: <strong>{countBasket}</strong> рублей
                     </div>
-                    <ButtonSubmit />
+                    <div onClick={handleClose}>
+                    <ButtonSubmit path="/order_page" name="Заказать"/>
+                    </div>
                 </div>
             </div>
         </Popover>
