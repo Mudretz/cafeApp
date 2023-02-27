@@ -18,39 +18,41 @@ interface Dirty {
 const AddressPage: FC = () => {
     const [value, setvalue] = useState<Value>({ name: "", address: "", phone: ""});
     const [nameDirty, setNameDirty] = useState<Dirty>({ name: false, address: false, phone: false });
-    const [errors, setErrors] = useState<Errors>();
+    const [errors, setErrors] = useState<Errors>({ name: "", address: "", phone: "" });
+
+    const removeProperty = (prop:string) => ({ [prop]: _, ...rest }) => rest;
 
     const validateBlur = (item: string) => {
         const errorsObj: Errors = {};
         if (value[item].trim() !== "") {
+            const removeItem = removeProperty(item);
+            setErrors(removeItem(errors));
             setNameDirty({...nameDirty, [item] : false});
         }
         if (value[item].trim() === "") {
-            errorsObj[item] = "Поле обязательно для заполнения";
+            setErrors({ ...errors, [item]: "Поле обязательно для заполнения" })
             setNameDirty({...nameDirty, [item] : true});
         }
         if (item === "phone" && !validator.isMobilePhone(value[item], ["ru-RU"])) {
-            console.log(value[item]);
-            errorsObj[item] = "Введите номер телефона";
+            setErrors({ ...errors, [item]: "Введите номер телефона" })
             setNameDirty({...nameDirty, [item] : true});
         } 
-        setErrors(errorsObj);
         return Object.keys(errorsObj).length === 0;
     }
     const validateOnChange = (item: string, e?: string) => {
         const errorsObj: Errors = {};
-        if (e!.trim() !== "") {
+        if (e!.trim() === "" && (item === "name" || item === "address")) {
+            setErrors({ ...errors, [item]: "Поле обязательно для заполнения" })
+            setNameDirty({...nameDirty, [item] : true});
+        } else {
+            const removeItem = removeProperty(item);
+            setErrors(removeItem(errors));
             setNameDirty({...nameDirty, [item] : false});
         }
-        if (e!.trim() === "") {
-            errorsObj[item] = "Поле обязательно для заполнения";
+        if (item === "phone" && !validator.isMobilePhone(e!, ["ru-RU"])) {
+            setErrors({ ...errors, [item]: "Введите номер телефона" })
             setNameDirty({...nameDirty, [item] : true});
         }
-        if (item === "phone" && !validator.isMobilePhone(e!, ["ru-RU"])) {
-            errorsObj[item] = "Введите номер телефона";
-            setNameDirty({...nameDirty, [item] : true});
-        } 
-        setErrors(errorsObj);
         return Object.keys(errorsObj).length === 0;
     }
     const handleChange = (item: string) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +61,7 @@ const AddressPage: FC = () => {
             [e.target.name]: e.target.value
         }))
         validateOnChange(item, e.target.value);
+
     };
     const handleBlure = (item: string) => {
         validateBlur(item);
@@ -68,6 +71,7 @@ const AddressPage: FC = () => {
         e.preventDefault();
         console.log(value);
     };
+    const isValid = Object.keys(errors).length === 0;
     return (
         <main>
             <BackButton />
@@ -116,7 +120,7 @@ const AddressPage: FC = () => {
                 </div>
                 <button
                     className="button"
-                    disabled={true}
+                    disabled={!isValid}
                     type="submit"
                 >
                     Заказать
