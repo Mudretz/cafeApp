@@ -205,7 +205,7 @@ main {
 .product {
     border-radius: 30px;
     overflow: hidden;
-    max-height: 150px;
+    max-height: 200px;
 }
 .card img {
     transition: 0.3s;
@@ -230,11 +230,11 @@ main {
     border-radius: 30px;
     overflow: hidden;
     box-sizing: border-box;
-    max-height: 350px;
+    max-height: 390px;
     max-width: 450px;
 }
 .product__dish {
-    max-height: 200px;
+    height: 375px;
     overflow: hidden;
 }
 .product__dish img {
