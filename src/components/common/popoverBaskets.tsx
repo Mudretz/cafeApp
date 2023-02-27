@@ -96,7 +96,7 @@ export default function BasicPopover() {
             </IconButton>
         ) : (null)
         }
-        <Snackbar open={openAlert} autoHideDuration={3000} onClose={handleCloseAlert} anchorOrigin={{ vertical, horizontal }}>
+        <Snackbar open={openAlert} autoHideDuration={1000} onClose={handleCloseAlert} anchorOrigin={{ vertical, horizontal }}>
             <Alert severity="warning" onClose={handleCloseAlert} sx={{ width: '100%' } }>
                 Корзина пуста, выберите товары
             </Alert>

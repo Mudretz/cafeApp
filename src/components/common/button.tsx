@@ -1,4 +1,4 @@
-import { Alert } from "@mui/material";
+import { Alert, useMediaQuery } from "@mui/material";
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import { FC, useState } from "react";
 import { addItemsBasket, basketUpdate } from "../../store/basket";
@@ -28,28 +28,29 @@ const Button: FC<Props> = ({ id, img, name, price, weight }) => {
         horizontal: 'center',
       });
     const { vertical, horizontal, open } = state;
-
+    const matches = useMediaQuery('(max-width:600px)');
+    console.log(matches);
     const handleClick = (id: string, price: number, newState: SnackbarOrigin) => {
-        const findBasket = basket.find((element) => {
-            return element.id === id
-        })
-        setState({ open: true, ...newState });
-        dispatch(AddCountBasket(price));
-        if (!findBasket) {
-            dispatch(addItemsBasket(
-                {
-                    id: id,
-                    img: img,
-                    name: name,
-                    weight: weight,
-                    price: price,
-                    count: 1
-                }
-            ))
-        } else {
-            dispatch(basketUpdate(
-                { ...findBasket, count: findBasket.count + 1 }
-            ))}
+    const findBasket = basket.find((element) => {
+        return element.id === id
+    })
+    setState({ open: true, ...newState });
+    dispatch(AddCountBasket(price));
+    if (!findBasket) {
+        dispatch(addItemsBasket(
+            {
+                id: id,
+                img: img,
+                name: name,
+                weight: weight,
+                price: price,
+                count: 1
+            }
+        ))
+    } else {
+        dispatch(basketUpdate(
+            { ...findBasket, count: findBasket.count + 1 }
+        ))}
     };
 
     const handleClose = () => {
@@ -58,10 +59,15 @@ const Button: FC<Props> = ({ id, img, name, price, weight }) => {
 
     return (
         <>
-            <div className="button" onClick={() => handleClick(id, price, { vertical: 'top', horizontal: "left" })}>
+            <div className="button" onClick={() => handleClick(id, price, { vertical: matches ? 'bottom' : "top", horizontal: "center" })}>
                 <p>В корзину</p>
             </div>
-            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical, horizontal }}>
+            <Snackbar
+                open={open}
+                autoHideDuration={1000}
+                onClose={handleClose}
+                anchorOrigin={{ vertical, horizontal }}
+            >
                 <Alert icon={<CheckIcon fontSize="inherit" />} onClose={handleClose} severity="success" sx={{ width: '100%' }}>
                     {`${name} успешно добавлен в корзину`}
                 </Alert>

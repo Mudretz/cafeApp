@@ -19,11 +19,12 @@ export interface State extends SnackbarOrigin {
 
 const OrderPage: FC = () => {
     const basket = useAppSelector(state => state.basket.entities);
-      const countBasket = useAppSelector(state => state.countBasket.entities);
-      const dispatch = useAppDispatch();
-    
-      const handleClickAddBasket = (id: string, price: number) => {
-        const findBasket = basket.find((element) => {
+    const countBasket = useAppSelector(state => state.countBasket.entities);
+    const history = useHistory();
+    const dispatch = useAppDispatch();
+
+    const handleClickAddBasket = (id: string, price: number) => {
+    const findBasket = basket.find((element) => {
             return element.id === id
         })
         if (findBasket) {
@@ -33,7 +34,7 @@ const OrderPage: FC = () => {
             dispatch(AddCountBasket(price));
         }
     };
-      const handleClickRemoveBasket = (id: string, price: number) => {
+    const handleClickRemoveBasket = (id: string, price: number) => {
         const findBasket = basket.find((element) => {
             return element.id === id
         })
@@ -46,12 +47,18 @@ const OrderPage: FC = () => {
                 dispatch(deleteItemsBasket(id));
             }
         }
+        if (basket.length === 1) {
+            history.push("/");
+        }
     };
-    
-        const handleDeleteItem = (id: string, price: number, count: number) => {
-            dispatch(deleteItemsBasket(id));
-            dispatch(decrementCountBasket(price*count));
-        };
+
+    const handleDeleteItem = (id: string, price: number, count: number) => {
+        dispatch(deleteItemsBasket(id));
+        dispatch(decrementCountBasket(price*count));
+        if (basket.length === 1) {
+            history.push("/");
+        }
+    };
 
     return (
         <main>

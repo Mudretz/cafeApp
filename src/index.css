@@ -113,6 +113,7 @@ body {
     position: sticky;
     top: 0px;
     z-index: 9;
+
 }
 
 .logo {
@@ -471,6 +472,7 @@ main {
     flex-direction: column;
     align-items: center;
     font-size: 19px;
+    justify-content: space-between;
 }
 
 .address__page h2 {
@@ -481,10 +483,10 @@ main {
     display: grid;
     justify-items: center;
     grid-gap: 10px;
-    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.3);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    height: 300px;
 }
 /*Анимации transition-group*/
 

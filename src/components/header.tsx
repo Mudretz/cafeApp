@@ -2,13 +2,14 @@ import { FC } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { MuiDrawer } from "./common/MuiDrawer";
 import BasicPopover from "./common/popoverBaskets";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Header: FC = () => {
     return (
         <header className='header'>
             <div className='header__item'>
                 <div className="logo">
-                    <Link to="/" >Амритта</Link>
+                    <Link to="/">Амритта</Link>
                 </div>
                 <div className="header__contact">
                     <p className="schedule">График работы: c 8:00 до 22:00</p>
@@ -36,7 +37,7 @@ const Header: FC = () => {
                     <div className="nav__item badge">
                         <BasicPopover />
                     </div>
-                    <MuiDrawer />
+                    <MuiDrawer/>
                 </nav>
             </div>
         </header>

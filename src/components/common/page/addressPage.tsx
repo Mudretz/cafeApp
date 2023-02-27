@@ -3,6 +3,7 @@ import { ChangeEvent, FC, FormEvent, useState } from "react";
 import Steper from "../steper";
 import BackButton from "../backButton";
 import validator from "validator";
+import { useHistory } from "react-router-dom";
 
 interface Value {
     [key: string]: string
@@ -19,6 +20,8 @@ const AddressPage: FC = () => {
     const [value, setvalue] = useState<Value>({ name: "", address: "", phone: ""});
     const [nameDirty, setNameDirty] = useState<Dirty>({ name: false, address: false, phone: false });
     const [errors, setErrors] = useState<Errors>({ name: "", address: "", phone: "" });
+    
+    const history = useHistory();
 
     const removeProperty = (prop:string) => ({ [prop]: _, ...rest }) => rest;
 
@@ -69,6 +72,7 @@ const AddressPage: FC = () => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        history.push("/сonfirmation");
         console.log(value);
     };
     const isValid = Object.keys(errors).length === 0;

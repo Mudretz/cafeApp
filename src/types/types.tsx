@@ -21,7 +21,7 @@ export interface Categories {
     name: string,
     img: string,
     url: string
-}
+};
 
 export interface Basket {
     id: string,
@@ -30,4 +30,4 @@ export interface Basket {
     weight: string,
     price: number,
     count: number
-}
+};

@@ -17,9 +17,11 @@ const Confirmation: FC = () => {
             <div className="container address__page">
                 <Steper step={2}/>
                 <div className="card__confirmation">
-                    <h2>Спасибо за заказ</h2>
                     <CheckCircleIcon fontSize="large" color="success"/>
-                    <p>Ожидайте, ближайшее время свами свяжутся.</p>
+                    <div>
+                        <h2>Спасибо за заказ</h2>
+                        <p>Ожидайте, ближайшее время свами свяжутся.</p>
+                    </div>
                     <div onClick={handleDelete}>
                         <ButtonSubmit path="/" name="Вернтуться"/>
                     </div>
