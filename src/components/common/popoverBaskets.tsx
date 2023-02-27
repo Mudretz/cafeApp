@@ -26,7 +26,6 @@ export default function BasicPopover() {
   });
   const location = useLocation();
   const { vertical, horizontal, openAlert } = state;
-  console.log(openAlert);
   const basket = useAppSelector(state => state.basket.entities);
   const countBasket = useAppSelector(state => state.countBasket.entities);
   const dispatch = useAppDispatch();
