@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cafeApp/static/css/main.05f273ba.css",
-    "main.js": "/cafeApp/static/js/main.c8f23e37.js",
+    "main.css": "/cafeApp/static/css/main.d23fc0a6.css",
+    "main.js": "/cafeApp/static/js/main.8ec1229f.js",
     "index.html": "/cafeApp/index.html",
-    "main.05f273ba.css.map": "/cafeApp/static/css/main.05f273ba.css.map",
-    "main.c8f23e37.js.map": "/cafeApp/static/js/main.c8f23e37.js.map"
+    "main.d23fc0a6.css.map": "/cafeApp/static/css/main.d23fc0a6.css.map",
+    "main.8ec1229f.js.map": "/cafeApp/static/js/main.8ec1229f.js.map"
   },
   "entrypoints": [
-    "static/css/main.05f273ba.css",
-    "static/js/main.c8f23e37.js"
+    "static/css/main.d23fc0a6.css",
+    "static/js/main.8ec1229f.js"
   ]
 }
