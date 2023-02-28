@@ -14,6 +14,7 @@ import OtherList from "./components/common/page/otherList";
 import OrderPage from "./components/orderPage";
 import addressPage from "./components/common/page/addressPage";
 import Confirmation from "./components/common/page/confirmation";
+import Dashboard from "./components/common/page/dashboard";
 
 const App: FC = () => {
   const routes = [
@@ -26,6 +27,7 @@ const App: FC = () => {
     {path: "/order_page", Component: OrderPage},
     {path: "/order_address", Component: addressPage},
     {path: "/сonfirmation", Component: Confirmation},
+    {path: "/dashboard", Component: Dashboard},
     {path: "/", Component: HomePage}
   ];
   const location = useLocation();
