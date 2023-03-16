@@ -9,15 +9,15 @@ interface Form {
     desription: string,
     price: string,
     weight: string,
-    img: string
+    img: string,
+    select: string
 }
 
 const AddDish: FC = () => {
     const { 
         handleSubmit,
-        reset,
         control,
-        formState: { errors },
+        formState: { errors }
     } = useForm<Form>({
         mode: "all"
     });
@@ -141,7 +141,7 @@ const AddDish: FC = () => {
                     <div>
                         <h2>Выберите категорию</h2>
                         <Controller
-                            name="img"
+                            name="select"
                             rules={{ required: "Поле обязательно к заполнению" }}
                             control={control}
                             render={({ field }) => (
@@ -153,6 +153,7 @@ const AddDish: FC = () => {
                                         id="demo-simple-select"
                                         value={age}
                                         label="Age"
+                                        name="select"
                                         onChange={handleChange}
                                     >
                                         <MenuItem value={10}>Ten</MenuItem>
