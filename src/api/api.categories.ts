@@ -15,7 +15,7 @@ const categories: Categories[] = [
     },
     {
         id: "asd12351237dfgh",
-        name: "Буузы",
+        name: "Традиционная кухня",
         img: "https://s3.smartofood.ru/ayan_cafe_ru/menu/30d15236-9fed-51e8-87d3-609a0490bc48.jpg",
         url: "/buryat_cuisine"
     },
@@ -33,7 +33,7 @@ const categories: Categories[] = [
     },
     {
         id: "asd23451237dfgh",
-        name: "Разное",
+        name: "Хлеб/десерты",
         img: "https://s3.smartofood.ru/ayan_cafe_ru/menu/f993c839-3c3c-5172-8a1a-b1bccbbaf869.jpg",
         url: "/other"
     }

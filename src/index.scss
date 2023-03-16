@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;700&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Alegreya Sans', sans-serif;
+    height: 100%;
+}
+
+#root {
+    min-height: 100%;
+}
+
+/*Оформление основной части*/
+
+main {
+    padding-top: 50px;
+    min-height: 550px;
+
+    @media screen and (min-width: 0) and (max-width: 900px) {
+        padding-top: 20px;
+    }
+}
+
+.container {
+    margin: 0 auto;
+    width: 75%;
+    min-height: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+
+    @media screen and (min-width: 0) and (max-width: 900px) {
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
+}
+
+/*Анимации transition-group*/
+
+.page {
+    position: absolute;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.page-enter-active {
+    animation: fade-in 0.5s forwards;
+}
+
+.page-exit-active {
+    animation: fade-out 0.5s forwards;
+}
+
+.node-enter-active {
+    animation: fade-in 0.5s forwards;
+}
+
+.node-exit-active {
+    animation: fade-out 0.5s forwards;
+}
+
+
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+        transform: translateX(-400px);
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    0%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}

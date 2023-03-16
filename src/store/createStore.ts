@@ -8,6 +8,7 @@ import buryatCuisineReducer from './buryatCuisine';
 import salatsReducer from "./salats";
 import drinksReducer from "./drinks";
 import otherReducer from "./other";
+import ordersReducer from "./orders";
 
 
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     buryatCuisine: buryatCuisineReducer,
     salats: salatsReducer,
     drinks: drinksReducer,
-    other: otherReducer
+    other: otherReducer,
+    orders: ordersReducer
 });
 
 const store = configureStore({

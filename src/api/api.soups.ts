@@ -28,7 +28,7 @@ const soups: Dishes[] = [
     {
         id: "a3s5idg213g23od",
         name: "Солянка",
-        img: "https://s3.smartofood.ru/ayan_cafe_ru/menu/d150af59-d99d-5242-a73c-b1bbf96ffaae.jpg",
+        img: "https://www.maggi.ru/data/images/recept/img640x500/recept_4986_jtf2.jpg",
         price: 245,
         description: "Колбаса докторская, колбаса полукопченая, ветчина, перец болгарский, морковь, лук репчатый, огурцы маринованные, маслины, лимон, специи, зелень",
         weight: "460 грамм"

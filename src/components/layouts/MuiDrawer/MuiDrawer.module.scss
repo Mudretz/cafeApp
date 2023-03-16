@@ -1,0 +1,52 @@
+.menu {
+    display: none !important;
+    cursor: pointer;
+    
+    @media screen and (min-width: 0) and (max-width: 900px) {
+        display: block !important;
+    }
+}
+
+.columns_menu {
+    margin: 6px 0;
+    width: 35px;
+    height: 5px;
+    background-color: #fa4c43;
+}
+
+.modal__menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal__menu__header {
+    padding-bottom: 0 0 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.modal__nav__item {
+    margin: 20px;
+    font-size: 30px;
+    transition: 0.3s;
+}
+
+.active {
+    color: #fa4c43 !important;
+}
+
+.schedule {
+    font-size: 17px;
+    opacity: 0.7;
+
+    @media screen and (min-width: 0) and (max-width: 900px) {
+        font-size: 15px;
+    }
+}
+
+.phone {
+    font-size: 19px;
+}

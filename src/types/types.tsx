@@ -31,3 +31,13 @@ export interface Basket {
     price: number,
     count: number
 };
+
+export interface Orders {
+    id: string,
+    count: number,
+    name: string,
+    address: string,
+    phone: string,
+    totalPrice: number,
+    order: Basket[]
+};

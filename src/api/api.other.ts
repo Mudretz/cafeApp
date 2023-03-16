@@ -1,6 +1,6 @@
 import { Dishes } from './../types/types';
 
-const soups: Dishes[] = [
+const otherApi: Dishes[] = [
     {
         id: "99427yshsh17asdb",
         name: "Блины",
@@ -43,4 +43,4 @@ const soups: Dishes[] = [
     },
 ];
 
-export default soups;
+export default otherApi;

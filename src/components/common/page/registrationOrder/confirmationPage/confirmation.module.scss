@@ -1,0 +1,28 @@
+.container {
+    margin: 0 auto;
+    width: 75%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 19px;
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    @media screen and (min-width: 0) and (max-width: 900px) {
+        width: 90%;
+    }
+}
+
+.card {
+    display: grid;
+    justify-items: center;
+    grid-gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    height: 300px;
+}

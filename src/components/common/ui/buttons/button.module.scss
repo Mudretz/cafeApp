@@ -1,0 +1,26 @@
+.button {
+    width: 150px;
+    height: 40px;
+    background-color: #fa4c43;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: white;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: #d33c35;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    &:disabled {
+        background-color: #9e9e9e;
+        cursor: not-allowed;
+    }
+    
+    @media screen and (min-width: 0) and (max-width: 900px) {
+        margin-top: 10px;
+    }
+}
