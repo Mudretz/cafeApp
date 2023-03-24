@@ -1,0 +1,16 @@
+.card {
+    border-radius: 30px !important;
+}
+
+.slider {
+    margin: 0 auto;
+    margin-bottom: 50px;
+    width: 75%;
+    min-height: 500px;
+    border-radius: 30px !important; 
+
+    @media screen and (min-width: 0) and (max-width: 900px) {
+        min-height: 220px;
+        width: 90%;
+    }
+}

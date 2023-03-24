@@ -1,12 +1,12 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { MuiDrawer } from "../MuiDrawer/MuiDrawer";
+import MuiDrawer from "../MuiDrawer/MuiDrawer";
 import BasicPopover from "../../common/ui/popoverBaskets/popoverBaskets";
 import { useAppSelector } from "../../../hooks/hook";
 import styles from "./header.module.scss"
 
 const Header: FC = () => {
-    const categoriesList = useAppSelector(state => state.categories.entities);
+    const categoriesListObj = useAppSelector(state => state.categoriesObj.entities);
 
     return (
         <header className={styles.header}>
@@ -19,7 +19,7 @@ const Header: FC = () => {
                     <p className={styles.phone}>+7 (9999) 99‒99‒99</p>
                 </div>
                 <nav className={styles.header__nav}>
-                    {categoriesList.map((item) => (
+                    {categoriesListObj.map((item) => (
                         <div className={styles.nav__item} key={item.id}>
                             <NavLink to={item.url} activeClassName={styles.active}>{item.name}</NavLink>
                         </div>
@@ -31,7 +31,7 @@ const Header: FC = () => {
                     <div className={styles.nav__item + " " + styles.badge}>
                         <BasicPopover />
                     </div>
-                    <MuiDrawer list={categoriesList}/>
+                    <MuiDrawer list={categoriesListObj}/>
                 </nav>
             </div>
         </header>

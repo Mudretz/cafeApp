@@ -36,16 +36,13 @@ const OrderPage: FC = () => {
         const findBasket = basket.find((element) => {
             return element.id === id
         });
-        if (findBasket) {
+        if (findBasket && findBasket.count !== 1) {
             dispatch(basketUpdate(
                 { ...findBasket, count: findBasket.count - 1 }
             ));
             dispatch(decrementCountBasket(price));
-            if (findBasket.count === 1) {
-                dispatch(deleteItemsBasket(id));
-            };
         };
-        if (basket.length === 1) {
+        if (basket.length < 1) {
             history.push("/");
         };
     };
@@ -59,11 +56,13 @@ const OrderPage: FC = () => {
     };
 
     return (
-        <main>
-            <BackButton />
+        <main className={styles.main}>
+            <div className={styles.header}>
+                <BackButton />
+                <Steper step={0}/>
+            </div>
             <div className={styles.container}>
-                <div>
-                    <Steper step={0}/>
+                <div className={styles.order}>
                     <div className={styles.content}>
                         <ModalBasketWindow
                             basket={basket}

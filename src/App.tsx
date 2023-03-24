@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Redirect, Route, useLocation } from "react-router-dom";
-import BuryatCuisineList from "./components/common/page/pagesList/buryatCuisineList";
+import BuryatCuisineList from "./components/common/page/pagesList/traditionsDishesList";
 import { CSSTransition } from 'react-transition-group';
 import ScrollToTop from "./utils/scrollToTop";
 import DrinksList from "./components/common/page/pagesList/drinksList";
@@ -13,9 +13,9 @@ import SoupsList from "./components/common/page/pagesList/soupsList";
 import SalatsList from "./components/common/page/pagesList/salatsList";
 import MainPage from "./components/common/page/mainPage/mainPage";
 import Order from "./components/order";
-import Dashboard from "./components/common/page/dashboard/dashboard";
-import AddDish from "./components/common/ui/addDish/addDish";
 import AddressPage from "./components/common/page/registrationOrder/addressPage/addressPage";
+import DishesLoader from "./components/common/ui/hoc/dishesLoader";
+import DashboardIndex from "./components/common/page/dashboard/dashboardIndex";
 
 const App: FC = () => {
     const routes = [
@@ -25,20 +25,19 @@ const App: FC = () => {
         {path: "/salats", Component: SalatsList},
         {path: "/drinks", Component: DrinksList},
         {path: "/other", Component: OtherList},
-        {path: "/dashboard", Component: Dashboard},
+        {path: "/dashboard/:dishId?", Component: DashboardIndex},
         {path: "/order", Component: Order},
         {path: "/order_address", Component: AddressPage},
         {path: "/сonfirmation", Component: Confirmation},
-        {path: "/addDish", Component: AddDish},
         {path: "/", Component: MainPage}
     ];
     
     const location = useLocation();
 
     return (
-        <>
+        <DishesLoader>
             <ScrollToTop />
-            {location.pathname !== "/order" && location.pathname !== "/order_address" && location.pathname !== "/сonfirmation" && location.pathname !== "/dashboard" && location.pathname !== "/addDish"
+            {location.pathname !== "/order" && location.pathname !== "/order_address" && location.pathname !== "/сonfirmation"
                 ?
                 <Header/>
                 :
@@ -53,14 +52,14 @@ const App: FC = () => {
                     }
                 </Route> 
             )}
-            {location.pathname !== "/order" && location.pathname !== "/order_address" && location.pathname !== "/сonfirmation" && location.pathname !== "/dashboard" && location.pathname !== "/addDish"
+            {location.pathname !== "/order" && location.pathname !== "/order_address" && location.pathname !== "/сonfirmation" && location.pathname !== "/dashboard"
                 ?
                 <Footer/>
                 :
                 null
             }
             <Redirect to="/"/>
-        </>
+        </DishesLoader>
   );
 };
 

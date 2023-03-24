@@ -61,15 +61,12 @@ export default function BasicPopover() {
     const findBasket = basket.find((element) => {
         return element.id === id
     })
-    if (findBasket) {
+    if (findBasket && findBasket.count !== 1) {
         dispatch(basketUpdate(
             { ...findBasket, count: findBasket.count - 1 }
         ));
         dispatch(decrementCountBasket(price));
-        if (findBasket.count === 1) {
-            dispatch(deleteItemsBasket(id));
-        }
-        if (basket.length === 1 && findBasket.count === 1) {
+        if (basket.length === 1) {
             setAnchorEl(null);
         }
     }

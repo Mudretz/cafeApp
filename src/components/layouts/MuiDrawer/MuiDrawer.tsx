@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { IconButton, Drawer, Box } from "@mui/material";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState } from "react";
@@ -11,8 +11,9 @@ type Props = {
   list: Categories[]
 };
 
-export const MuiDrawer:FC <Props> = ({ list }) => {
+const MuiDrawer:FC <Props> = ({ list }) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    
     return (
     <div className={styles.menu}>
         <IconButton aria-label="logo" onClick={() => setIsDrawerOpen(true)}>
@@ -56,3 +57,5 @@ export const MuiDrawer:FC <Props> = ({ list }) => {
     </div>
   )
 }
+
+export default React.memo(MuiDrawer);

@@ -100,47 +100,38 @@ const AddressPage: FC = () => {
             <BackButton />
             <form className={styles.container} onSubmit={handleSubmit}>
                 <Steper step={1}/>
-                <div>
-                    <h2>Укажите ваше имя</h2>
-                    <TextField
-                        id="1"
-                        label="Имя"
-                        variant="outlined"
-                        sx={{ width: "300px"}}
-                        onChange={handleChange("name")}
-                        name="name"
-                        onBlur={() => handleBlure("name")}
-                        error={nameDirty.name}
-                        helperText={nameDirty.name ? errors!.name || "Поле обязательно для заполнения" : ""}
-                    />
-                </div>
-                <div>
-                    <h2>Укажите адрес доставки</h2>
-                    <TextField
-                        id="2"
-                        label="Адрес"
-                        variant="outlined"
-                        sx={{ width: "300px"}}
-                        onChange={handleChange("address")}
-                        name="address"
-                        onBlur={() => handleBlure("address")}
-                        error={nameDirty.address}
-                        helperText={nameDirty.address ? errors!.address || "Поле обязательно для заполнения" : ""}
-                    />
-                </div>
-                <div>
-                    <h2>Укажите номер телефона</h2>
-                    <TextField
-                        id="3"
-                        label="Номер телефона"
-                        variant="outlined" sx={{ width: "300px"}}
-                        onChange={handleChange("phone")}
-                        name="phone"
-                        onBlur={() => handleBlure("phone")}
-                        error={nameDirty.phone}
-                        helperText={nameDirty.phone ? errors!.phone || "Введите номер телефона" : ""}
-                    />    
-                </div>
+                <TextField
+                    id="1"
+                    label="Укажите ваше имя"
+                    variant="outlined"
+                    sx={{ width: "300px", height: "80px"}}
+                    onChange={handleChange("name")}
+                    name="name"
+                    onBlur={() => handleBlure("name")}
+                    error={nameDirty.name}
+                    helperText={nameDirty.name ? errors!.name || "Поле обязательно для заполнения" : ""}
+                />
+                <TextField
+                    id="2"
+                    label="Укажите адрес доставкис"
+                    variant="outlined"
+                    sx={{ width: "300px", height: "80px"}}
+                    onChange={handleChange("address")}
+                    name="address"
+                    onBlur={() => handleBlure("address")}
+                    error={nameDirty.address}
+                    helperText={nameDirty.address ? errors!.address || "Поле обязательно для заполнения" : ""}
+                />
+                <TextField
+                    id="3"
+                    label="Укажите номер телефона"
+                    variant="outlined" sx={{ width: "300px", height: "80px"}}
+                    onChange={handleChange("phone")}
+                    name="phone"
+                    onBlur={() => handleBlure("phone")}
+                    error={nameDirty.phone}
+                    helperText={nameDirty.phone ? errors!.phone || "Введите номер телефона" : ""}
+                />    
                 <button
                     className={styles.button}
                     disabled={!isValid}

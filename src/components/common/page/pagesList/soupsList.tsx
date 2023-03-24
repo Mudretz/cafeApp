@@ -1,39 +1,15 @@
-import { FC, useEffect } from "react";
-import soups from "../../../../api/api.soups";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/hook";
-import { soupsReceved } from "../../../../store/soupsStore";
-import { isOutdated } from "../../../../utils/isOutdated";
-import CardDish from "../../ui/cardDish/cardDish";
+import React, { FC } from "react";
+import { useAppSelector } from "../../../../hooks/hook";
+import DishesList from "../../ui/dishesList";
 
 
 const SoupsList: FC = () => {
-    const soupsList = useAppSelector(state => state.soups.entities);
-    const lastFetch = useAppSelector(state => state.soups.lastFetch);
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-        if (isOutdated(lastFetch))
-        {
-            dispatch(soupsReceved(soups));
-        }
-    });
-    
+    const soupsDishesList = useAppSelector(state => state.dishes.entities)
+        .filter(item => item.category.name === "Супы");
+
     return (
-        <main>
-            <div className="container">
-                {soupsList.map((item) => (
-                    <CardDish
-                        id={item.id}
-                        img={item.img}
-                        name={item.name}
-                        description={item.description}
-                        price={item.price}
-                        weight={item.weight}
-                        key={item.id}
-                    />
-                ))}
-            </div>
-        </main>
+        <DishesList list={soupsDishesList}/>
     );
 }
  
-export default SoupsList;
+export default React.memo(SoupsList);

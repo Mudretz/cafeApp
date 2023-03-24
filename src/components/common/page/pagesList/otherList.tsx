@@ -1,38 +1,15 @@
-import { FC, useEffect } from "react";
-import otherApi from "../../../../api/api.other";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/hook";
-import { otherReceved } from "../../../../store/other";
-import { isOutdated } from "../../../../utils/isOutdated";
-import CardDish from "../../ui/cardDish/cardDish";
+import React, { FC } from "react";
+import { useAppSelector } from "../../../../hooks/hook";
+import DishesList from "../../ui/dishesList";
 
 
 const OtherList: FC = () => {
-    const otherList = useAppSelector(state => state.other.entities);
-    const lastFetch = useAppSelector(state => state.other.lastFetch);
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-        if (isOutdated(lastFetch))
-        {
-            dispatch(otherReceved(otherApi));
-        }
-    })
+    const hotDishesList = useAppSelector(state => state.dishes.entities)
+        .filter(item => item.category.name === "Хлеб/десерты");
+
     return (
-        <main>
-            <div className="container">
-                {otherList.map((item) => (
-                    <CardDish
-                        id={item.id}
-                        img={item.img}
-                        name={item.name}
-                        description={item.description}
-                        price={item.price}
-                        weight={item.weight}
-                        key={item.id}
-                    />
-                ))}
-            </div>
-        </main>
+        <DishesList list={hotDishesList}/>
     );
 }
  
-export default OtherList;
+export default React.memo(OtherList);

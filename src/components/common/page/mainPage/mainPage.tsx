@@ -1,21 +1,10 @@
-import { useEffect, FC } from "react";
-import categories from "../../../../api/api.categories";
+import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { isOutdated } from "../../../../utils/isOutdated";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/hook";
-import { categoriesReceved } from "../../../../store/categories";
+import { useAppSelector } from "../../../../hooks/hook";
 import styles from "./mainPage.module.scss";
 
 const MainPage: FC = () => {
-    const dispatch = useAppDispatch();
-    const categoriesList = useAppSelector(state => state.categories.entities);
-    const lastFetch = useAppSelector(state => state.categories.lastFetch);
-    useEffect(() => {
-        if (isOutdated(lastFetch))
-        {
-            dispatch(categoriesReceved(categories));
-        }
-    });
+    const categoriesObjList = useAppSelector(state => state.categoriesObj.entities);
 
     return (
         <main>
@@ -23,7 +12,7 @@ const MainPage: FC = () => {
                 <img src="https://www.gastronom.ru/binfiles/images/20220420/b1fd4150.jpg" alt="слайдер"/>
             </div>
             <div className="container">
-            {categoriesList.map((item) =>(
+            {categoriesObjList.map((item) =>(
                 <div className={styles.card} key={item.id}>
                     <p>{item.name}</p>
                     <div className={styles.content}>
@@ -38,4 +27,4 @@ const MainPage: FC = () => {
     );
 }
  
-export default MainPage;
+export default React.memo(MainPage);

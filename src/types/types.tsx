@@ -1,10 +1,3 @@
-export interface Posts {
-    body: string,
-    id: number,
-    title: string,
-    userId: number
-};
-
 export interface Dishes {
     id: string,
     name: string,
@@ -12,8 +5,12 @@ export interface Dishes {
     price: number,
     description: string,
     weight: string,
-    mayonnaise?: boolean,
-    sour_cream?: boolean,
+    category: {
+        id: string,
+        name: string,
+        img: string,
+        url: string
+    }
 };
 
 export interface Categories {

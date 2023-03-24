@@ -31,7 +31,7 @@ const ModalBasketWindow: FC<Props> = ({ basket, handleAdd, handleRemove, handleD
                             </div>
                             <div className={styles.description__item}>
                                 <div className={styles.count}>
-                                    <Tooltip title="Убавить" sx={{ backgroundColor: "#fa4c43" }}>
+                                    <Tooltip title="Убавить" className={styles.count__icon}>
                                         <IndeterminateCheckBoxIcon
                                             sx={{ color: "#fa4c43" }}
                                             fontSize={"medium"}
@@ -40,7 +40,7 @@ const ModalBasketWindow: FC<Props> = ({ basket, handleAdd, handleRemove, handleD
                                         />
                                     </Tooltip>
                                     <div className={styles.count__item}>{item.count}</div>
-                                    <Tooltip title="Добавить">
+                                    <Tooltip title="Добавить" className={styles.count__icon}>
                                         <AddBoxIcon
                                             sx={{ color: "#fa4c43" }}
                                             fontSize={"medium"}

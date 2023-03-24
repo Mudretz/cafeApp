@@ -28,28 +28,29 @@ const Button: FC<Props> = ({ id, img, name, price, weight }) => {
         vertical: 'top',
         horizontal: 'center',
       });
+
     const { vertical, horizontal, open } = state;
     const matches = useMediaQuery('(max-width:600px)');
     const handleClick = (id: string, price: number, newState: SnackbarOrigin) => {
-    const findBasket = basket.find((element) => {
-        return element.id === id
-    })
-    setState({ open: true, ...newState });
-    dispatch(AddCountBasket(price));
-    if (!findBasket) {
-        dispatch(addItemsBasket(
-            {
-                id: id,
-                img: img,
-                name: name,
-                weight: weight,
-                price: price,
-                count: 1
-            }
-        ))
-    } else {
-        dispatch(basketUpdate(
-            { ...findBasket, count: findBasket.count + 1 }
+        const findBasket = basket.find((element) => {
+            return element.id === id
+        });
+        setState({ open: true, ...newState });
+        dispatch(AddCountBasket(price));
+        if (!findBasket) {
+            dispatch(addItemsBasket(
+                {
+                    id: id,
+                    img: img,
+                    name: name,
+                    weight: weight,
+                    price: price,
+                    count: 1
+                }
+            ))
+        } else {
+            dispatch(basketUpdate(
+                { ...findBasket, count: findBasket.count + 1 }
         ))}
     };
 
